@@ -1,0 +1,44 @@
+{% extends "inverted_base.html" %}
+{% load staticfiles %}
+{% load course_extras %}
+
+    {% block title %}
+        About | {{ block.super }}
+    {% endblock title %}
+
+<body class="home-page tucked-hero">
+    {% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <div>
+            <section class="about_us">
+                <div class="content medium-padding align-center">
+                  <div class="column intro-inverted">
+                    <h2 class="inverted">About Us</h2>
+                    <div class="column">
+                        <a href="#" class="video_button"></a>
+                    </div>
+                  </div>
+                </div>
+            </section>
+            <section class="about-intro light-grey-bg border-bottom" id="">
+                <div class="content align-center-at-small border-bottom">
+                    <div class="column float-left gap-top-small">
+                            <a href="#" class="badge reddish">Outings</a>
+                            <a href="#" class="badge yellow">Company Events</a>
+                    </div>
+                    <div class="column float-right gap-top-small">
+                        <a href="{% url 'courses:list' %}" class="badge">Contact Press</a>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="content align-center medium-padding">
+                    <div class="colomn">
+                        <h2>Add more content later!</h2>
+                        <h1>Hello World!</h1>
+                    </div>
+                </div>
+            </section>
+        </div>
+    {% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load course_extras %}
+
+
+{% block title %}
+    {{ step.title }} | {{ step.course.title }}
+{% endblock title %}
+
+{% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <section class="medium-padding cta-intro" id="">
+            <div class="content content-width-medium align-center">
+                <div class="copy gap-top-small">
+                    <h3><a href="{% url 'courses:detail' pk=step.course.pk %}">
+                            {{ step.course.title }}
+                        </a></h3>
+                    {{ block.super }}
+                    <h5>{{ step.title }}</h5>
+                    {% with con=step.content %}
+                        <p>
+                            {{ con|linebreaks }}
+                            Content: {{ con|wordcount }} words.
+                        </p>
+                        <h4>Estimated time to complete: {{ con|wordcount|time_estimate }} minute{{ con|wordcount|time_estimate|pluralize }}.</h4>
+                    {% endwith %}
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content medium-padding align-center">
+                <h3>Hello World!</h3>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

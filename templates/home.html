@@ -1,0 +1,87 @@
+{% extends "inverted_base.html" %}
+{% load staticfiles %}
+{% load course_extras %}
+
+    {% block title %}
+        {{ block.super }}
+    {% endblock title %}
+
+<body class="home-page tucked-hero">
+    {% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <div>
+            <section class="home-view">
+                <div class="content medium-padding align-left">
+                  <div class="column intro-inverted">
+                    <h3 class="headline inverted">Imagine. Build. Create</h3>
+                    <p class="inverted">An Android or IOS app today with Gamtech</p>
+                    <p class="cta"><a class="arrow inverted" href="/contact/">Study at a top ranked engineering school</a>
+                    </p>
+                  </div>
+                </div>
+            </section>
+            <section class="the-intro light-grey-bg border-bottom" id="">
+                <div class="content medium-padding align-center">
+                    <div class="column">
+                            <h3 class="">Ranked no.1 in the country</h3>
+                            <p>Don't miss our latest course, <a href="{% url 'courses:list' %}">{% newest_course %}</a></p>
+                            </p>
+                    </div>
+                </div>
+            </section>
+            <section class="our-story" id="">
+                <div class="content medium-padding align-center">
+                    <div class="grid-2-at-medium grid-row-equal-heights align-center gap-top-small">
+                        <div class="column">
+                            <a class="card" href="#">
+                                <div class="grid-space-base">
+                                    <div class="column">
+                                        <div class="image"></div>
+                                    </div>
+                                    <div class="column">
+                                        <h6>New Degrees Offered</h6>
+                                    </div>
+                                    <div class="column">
+                                        <div class="cta">
+                                            <div class="link arrow">Earn a degree in Software Engineering</div>
+                                        </div>and control your future career.</div>
+                                    <div class="column">
+                                        <div class="grid-auto grid-align-center grid-space-base">
+                                            <div class="column">
+                                                <div class="badge">Register now</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <p class="legal-text gray-muted">Learn <strong>backend languages</strong> like <strong>Python</strong></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <div class="card" href="#">
+                                <div class="grid-space-base">
+                                    <div class="column">
+                                        <div class="image reader-contactless-chip-dock offset-horz-small"></div>
+                                    </div>
+                                    <div class="column">
+                                        <h6>Scholarships are available</h6>
+                                    </div>
+                                    <div class="column">
+                                        <div class="cta">
+                                            <div class="link arrow">Enter our scholarship program</div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <p class="legal-text gray-muted">More than <strong> 200</strong> students<strong> received aid this year</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    {% endblock content %}

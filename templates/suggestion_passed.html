@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load humanize course_extras %}
+
+{% block title %}
+    Suggestion Complete | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <section class="medium-padding cta-intro" id="">
+            <div class="content content-width-medium align-center">
+                <div class="copy gap-top-small">
+                    {% if messages %}
+                        <div class="gap-top-small">
+                            {% for message in messages %}
+                                <div data-alert class="alert-box">
+                                    <h3 class="teal-theme">{{ message }}</h3>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <h3>We appreciate your time</h3>
+                    <h4>Download our app today so you don't miss a thing</h4>
+                    <h5>Add more content later</h5>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content medium-padding align-center">
+                <h3>Hello World!</h3>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

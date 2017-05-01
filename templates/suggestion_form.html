@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load humanize course_extras %}
+
+{% block title %}
+    Suggest an idea | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <section class="medium-padding cta-intro light-grey-bg" id="">
+            <div class="content content-width-medium">
+                <div class="container gap-top-small align-center clearfix">
+                        <form class="align-left" action="" method="POST">
+                            <h3 class="teal-theme align-center">Give Us a Suggestion</h3>
+                            {{ form.as_p }}
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-primary strong float-right">
+                        </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

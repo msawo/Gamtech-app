@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load course_extras %}
+
+{% block title %}
+    {{ step.title }} | {{ step.course.title }} | {{ block.super }}
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'courses:detail' pk=step.course.pk %}">{{ step.course.title }}</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <section class="medium-padding cta-intro" id="">
+            <div class="content content-width-medium">
+                <div class="copy gap-top-small">
+                    {{ block.super }}
+                    <h2 class="purple align-center">{{ step.title }}</h2>
+                    <div class="gap-top-small gap-bottom-small">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'courses:edit_quiz' course_pk=step.course.pk quiz_pk=step.pk %}" class="badge strong">Edit</a>
+                        <a href="{% url 'courses:create_question' quiz_pk=step.pk question_type='mc' %}" class="badge strong">Multiple Choice Questions</a>
+                        <a href="{% url 'courses:create_question' quiz_pk=step.pk question_type='tf' %}" class="badge strong">New True/False Question</a>
+                        {% endif %}
+                    </div>
+                    <ul>
+                        {% for question in step.question_set.all %}
+                        <li class="card">
+                            <h4>{{ question.prompt }}</h4>
+                            {% for answer in question.answer_set.all %}
+                                <div class="gap-bottom-small answers">{{ answer.text }}</div>
+                            {% endfor %}
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'courses:edit_question' question_pk=question.pk quiz_pk=step.pk %}" class="btn primary-btn arrow gap">Edit</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content medium-padding align-center">
+                <h3>Hello World!</h3>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load course_extras %}
+
+{% block title %}
+    {{ form.instance.quiz.title|default:"New Question" }} | {{ quiz.course.title }}
+    | {{ block.super }}
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'courses:detail' pk=quiz.course.pk %}">{{ quiz.course.title }}</a></li>
+    <li><a href="{% url 'courses:quiz' course_pk=quiz.course.pk step_pk=quiz.pk %}">{{ quiz.title }}</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <section class="medium-padding cta-intro" id="">
+            <div class="content align-center">
+                <div class="copy gap-top-small">
+                    {{ block.super }}
+                    <div class="container gap-top-small align-center clearfix">
+                        <form class="align-left" action="" method="POST">
+                            <h1 class="teal-theme align-center">{{ form.instance.quiz.title|default:"Create a new question" }}</h1>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+                            {{ formset.management_form }}
+
+                            <div class="">
+                                <table role="grid" class="" style="">
+                                    <thread>
+                                        <tr class="">
+                                            <th scope="col" class="align-center" style="width: 10%">Order</th>
+                                            <th scope="col" class="align-center">Text</th>
+                                            <th scope="col" class="align-center" style="width: 5%">Correct?</th>
+                                            <th scope="col" class="align-center reddish" style="width: 15%">Delete</th>
+                                        </tr>
+                                    </thread>
+                                    <tbody class="order">
+                                        {% for form in formset %}
+                                            <tr class="answer-form {% if form.instance.pk %}item{% else %}new{% endif %}">
+                                                <td>{{ form.id }}{{ form.order }}</td>
+                                                <td>{{ form.text }}</td>
+                                                <td class="align-center">{{ form.correct }}</td>
+                                                {% if form.instance.pk %}
+                                                    <td class="align-center reddish">{{ form.DELETE }}</td>
+                                                {% else %}
+                                                    <td class="align-center yellow"></td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="submit" class="btn btn-primary strong float-right" value="Save">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
+
+
+{% block css %}
+    {{ form.media.css }}
+{% endblock %}
+
+{% block javascript %}
+    {% load static from staticfiles %}
+    {{ form.media.js }}
+    <script src="{% static 'js/vendor/jquery.formset.js' %}"></script>
+    <script>
+        $('.answer-form').formset({
+            addText: 'add answer',
+            deleteText: 'remove'
+        })
+    </script>
+{% endblock %}

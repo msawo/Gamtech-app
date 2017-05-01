@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
+{% endblock %}
+{% block title %}
+    Available Courses | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <div class="main-content position-relative" id="main-content" role="main">
+        <div id="top"></div>
+        <section class="medium-padding cta-intro" id="">
+            <div class="content medium-padding align-center">
+                <h3 gap-top-small>Available Courses</h3>
+                <div class="grid-2-at-small grid-4-at-large grid-row-equal-heights">
+                    {% for course in courses %}
+                        <div class="column blue-theme">
+                            <a class="card full-bleed" href="{% url 'courses:detail' pk=course.pk %}">
+                                <div class="image pad-top-base theme_split_bg"></div>
+                                <div class="copy line_pad">
+                                    <h6 class="no-gap">{{ course.title }}</h6>
+                                    <p class="no-gap">{{ course.description|truncatewords:9 }}</p>
+                                    <p class="cta no-gap"><span class="link arrow">
+                                        Learn More</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="gap-top-small">
+                    <h4 class=""><a href="{% url 'suggestion' %}" class="purple badge">Suggest a course</a></h4>
+                </div>
+                <div class="gap-top-small">
+                    Contact us at {{ email|urlize }}
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content medium-padding align-center">
+                <h3>Hello World!</h3>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
